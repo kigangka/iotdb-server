@@ -21,4 +21,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-replay_pid*
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea
+/iotdb.iml
+/target/classes/application.yml
+/target/classes/mapper/WeatherMapper.xml
+/target

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kit.iotdb.mapper.WeatherMapper">
+
+    <resultMap id="BaseResultMap" type="com.kit.iotdb.entity.WeatherEntity">
+        <result column="Time" property="timestamp"/>
+        <result column="root.ln.weather.samplingTime" property="samplingTime"/>
+        <result column="root.ln.weather.samplingTimeStr" property="samplingTimeStr"/>
+        <result column="root.ln.weather.cityKey" property="cityKey"/>
+        <result column="root.ln.weather.city" property="city"/>
+        <result column="root.ln.weather.temperature" property="temperature"/>
+        <result column="root.ln.weather.humidity" property="humidity"/>
+        <result column="root.ln.weather.pm10" property="pm10"/>
+        <result column="root.ln.weather.pm25" property="pm25"/>
+        <result column="root.ln.weather.quality" property="quality"/>
+        <result column="root.ln.weather.remark" property="remark"/>
+    </resultMap>
+
+    <insert id="addWeather" parameterType="com.kit.iotdb.entity.WeatherEntity">
+        insert into root.ln.weather(samplingTime, samplingTimeStr, cityKey, city, temperature, humidity, pm10, pm25,
+                                    quality, remark)
+        values (#{samplingTime}, #{samplingTimeStr}, #{cityKey}, #{city}, #{temperature}, #{humidity}, #{pm10}, #{pm25},
+                #{quality}, #{remark})
+    </insert>
+
+    <select id="pageWeather" resultMap="BaseResultMap">
+        select samplingTime,
+               samplingTimeStr,
+               cityKey,
+               city,
+               temperature,
+               humidity,
+               pm10,
+               pm25,
+               quality,
+               remark
+        from root.ln.weather order by time desc limit #{pageSize}
+        offset #{offset}
+    </select>
+
+    <delete id="deleteWeather" parameterType="java.lang.String">
+        delete
+        from root.ln.weather.*
+        where time <![CDATA[ >= ]]> ${startTime}
+          and time <![CDATA[ <= ]]> ${endTime};
+    </delete>
+
+</mapper>
