@@ -51,6 +51,8 @@
 ![iotdbsrcerror-3.jpg](src%2Fmain%2Fresources%2Fdoc%2Fimg%2Fiotdbsrcerror-3.jpg)
 
 基于以上问题，那就要求entity必须多加一个long类型的Time序列，查询为全查询，而且不能使用select * ，需要自行按entity顺序查询所有字段（Time默认返回可以省，但entity中不能省，且必须是第一个），具体此处不再截图说明，可以参考demo中entity和mapper文件。
-不清楚是iotdb官网的SDK问题，还是说目前是不适配MyBatis，后续能适配当然最好了，总之目前简单的增，删，查功能还是可以实现的。  
+不清楚是iotdb官网的SDK问题，还是说目前是不适配MyBatis，后续能适配当然最好了，总之目前简单的增，删，查功能还是可以实现的。
+另外就是查询时ResultMap匹配问题，因为实际查询时间序列是返回全路径的，比如查询samplingTime，实际返回结果是root.ln.weather.samplingTime
+![resultmap.jpg](src%2Fmain%2Fresources%2Fdoc%2Fimg%2Fresultmap.jpg)
 ![query.jpg](src%2Fmain%2Fresources%2Fdoc%2Fimg%2Fquery.jpg)
 
